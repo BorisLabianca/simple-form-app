@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Form from "./components/Form";
+import StepTwo from "./components/StepTwo";
+import Footer from "./components/Footer";
+import { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+library.add(faEye, faEyeSlash);
 function App() {
+  const [form, setForm] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!form ? (
+        <Form
+          form={form}
+          setForm={setForm}
+          name={name}
+          setName={setName}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          passwordConfirmation={passwordConfirmation}
+          setPasswordConfirmation={setPasswordConfirmation}
+        />
+      ) : (
+        <StepTwo
+          form={form}
+          setForm={setForm}
+          name={name}
+          setName={setName}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+        />
+      )}
+
+      <Footer
+        tech="React"
+        techSite="https://reactjs.org/"
+        place="Le Reacteur"
+        placeSite="https://www.lereacteur.io/"
+        author="Boris"
+        linkedin="https://www.linkedin.com/in/boris-labianca-01a52871/"
+      />
     </div>
   );
 }
